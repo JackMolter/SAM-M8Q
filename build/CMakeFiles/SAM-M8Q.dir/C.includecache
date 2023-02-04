@@ -11,6 +11,8 @@ stdio.h
 -
 string.h
 -
+stdlib.h
+-
 pico/stdlib.h
 /home/jackmolter/SAM-M8Q/pico/stdlib.h
 lwgps_opt.h
