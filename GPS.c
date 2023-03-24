@@ -46,7 +46,7 @@ void gps_init() {
 }
 
 void gps_read_data() {
-    uart_set_fifo_enabled(GPS_UART_ID, 1);
+    uart_set_fifo_enabled(GPS_UART_ID, 1);      // turns FIFO on
 
     printf(" Begin data gathering\n");
 
@@ -54,7 +54,7 @@ void gps_read_data() {
     uint8_t buf[1];
 
     while(i < 1000) {
-
+        // this shouldnt work
         if(uart_is_readable != 0) {
             uart_read_blocking(GPS_UART_ID, buf, 1);
 
