@@ -122,23 +122,33 @@ void gps_read_data(){
 
 int main() {
     stdio_init_all();
-    sleep_ms(120000);   // sleep for 2 minutes to allow for GPS fix 
+    sleep_ms(12000);   // sleep for 2 minutes to allow for GPS fix 
 
     gps_init();
     sleep_ms(30);
-    gps_read_data();
     
     lwgps_init(&hgps);  // initilize lwgps
     
     // Process all input data 
-    lwgps_process(&hgps, con, strlen(con));
+    while (1) {
 
-    // Print messages 
-    printf("Valid status: %d\r\n", hgps.is_valid);
-    printf("Latitude: %f degrees\r\n", hgps.latitude);
-    printf("Longitude: %f degrees\r\n", hgps.longitude);
-    printf("Altitude: %f meters\r\n", hgps.altitude);
+        gps_read_data();
     
+        lwgps_process(&hgps, con, strlen(con));
+
+        // Print messages 
+        printf("Valid status: %d\r\n", hgps.is_valid);
+        printf("Latitude: %f degrees\r\n", hgps.latitude);
+        printf("Longitude: %f degrees\r\n", hgps.longitude);
+        //printf("Altitude: %f meters\r\n", hgps.altitude);
+        //printf("Hour: %d meters\r\n", hgps.hours); 
+        //printf("min: %d meters\r\n", hgps.minutes); 
+        //printf("sec: %d meters\r\n", hgps.seconds); 
+        printf("i am speed: %f meters\r\n", hgps.speed);
+
+        sleep_ms(1000);
+    }
+
     return 0;
 
 }
